@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GT Image Search</string>
+    <string name="switch_camera">Switch Camera</string>
+    <string name="detect_object">Detect</string>
+    <string name="image_search_result">Image search results:</string>
+    <string name="no_results">No results found.\n\nPlease take another picture!</string>
+</resources>
