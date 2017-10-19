@@ -21,7 +21,7 @@ import java.util.concurrent.Executors
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        private val MIN_PRICE = 50
+        private val MIN_PRICE = 100
         private val MAX_PRICE = 300
         private val INPUT_SIZE = 224
         private val IMAGE_MEAN = 117
