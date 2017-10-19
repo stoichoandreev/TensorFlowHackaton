@@ -1,4 +1,4 @@
-package com.gumtree.tensorflowexample
+package com.gumtree.tensorflowexample.tensorflow
 
 import android.annotation.TargetApi
 import android.content.res.AssetManager

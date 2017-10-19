@@ -1,4 +1,4 @@
-package com.gumtree.tensorflowexample
+package com.gumtree.tensorflowexample.tensorflow
 
 import android.graphics.Bitmap
 import android.graphics.RectF

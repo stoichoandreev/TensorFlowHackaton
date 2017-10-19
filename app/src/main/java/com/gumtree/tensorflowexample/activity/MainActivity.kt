@@ -1,4 +1,4 @@
-package com.gumtree.tensorflowexample
+package com.gumtree.tensorflowexample.activity
 
 import android.app.Activity
 import android.content.Context
@@ -13,6 +13,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.flurgle.camerakit.CameraListener
+import com.gumtree.tensorflowexample.tensorflow.Classifier
+import com.gumtree.tensorflowexample.R
+import com.gumtree.tensorflowexample.tensorflow.TensorFlowImageClassifier
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import java.util.concurrent.ExecutorService
