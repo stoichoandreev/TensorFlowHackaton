@@ -31,7 +31,13 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.flurgle:camerakit:0.9.13'
+
+
     testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.11.0'
+    testCompile 'org.powermock:powermock-api-mockito:1.7.3'
+    testCompile 'org.powermock:powermock-module-junit4:1.7.3'
+    testCompile 'org.powermock:powermock-core:1.7.3'
 }
 repositories {
     mavenCentral()
