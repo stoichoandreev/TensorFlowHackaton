@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         private val MAX_PRICE = 300
     }
 
-    private var classifier: Classifier? = null
+    private lateinit var classifier: Classifier
     private val executor: ExecutorService by lazy { Executors.newSingleThreadExecutor() }
     private lateinit var picture: ByteArray
     private val rand: Random by lazy(LazyThreadSafetyMode.NONE) { Random() }
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        camera_view!!.setCameraListener(object : CameraListener() {
+        camera_view.setCameraListener(object : CameraListener() {
             override fun onPictureTaken(picture: ByteArray) {
                 super.onPictureTaken(picture)
 
@@ -46,31 +46,31 @@ class MainActivity : AppCompatActivity() {
 
                 var bitmap = BitmapFactory.decodeByteArray(picture, 0, picture.size)
                 bitmap = Bitmap.createScaledBitmap(bitmap, ImagePreference.INPUT_SIZE, ImagePreference.INPUT_SIZE, false)
-                image_view_result!!.setImageBitmap(bitmap)
-                val results = classifier!!.recognizeImage(bitmap)
+                image_view_result.setImageBitmap(bitmap)
+                val results = classifier.recognizeImage(bitmap)
                 displayImageRecognitionResult(results)
             }
         })
 
-//        button_toggle_camera!!.setOnClickListener { camera_view!!.toggleFacing() }
-        button_detect_object!!.setOnClickListener { camera_view!!.captureImage() }
+//        button_toggle_camera.setOnClickListener { camera_view.toggleFacing() }
+        button_detect_object.setOnClickListener { camera_view.captureImage() }
 
         initTensorFlowAndLoadModel()
     }
 
     override fun onResume() {
         super.onResume()
-        camera_view!!.start()
+        camera_view.start()
     }
 
     override fun onPause() {
-        camera_view!!.stop()
+        camera_view.stop()
         super.onPause()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        executor.execute({ classifier!!.close() })
+        executor.execute({ classifier.close() })
     }
 
     private fun initTensorFlowAndLoadModel() {
@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun makeButtonVisible() {
-        runOnUiThread { button_detect_object!!.visibility = View.VISIBLE }
+        runOnUiThread { button_detect_object.visibility = View.VISIBLE }
     }
 
     private fun displayImageRecognitionResult(results: List<Classifier.Recognition>) {

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Todo need to have ConstrainsLayout-->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
@@ -20,8 +21,8 @@
 
             <com.flurgle.camerakit.CameraView
                 android:id="@+id/camera_view"
-                android:layout_width="350dp"
-                android:layout_height="350dp"
+                android:layout_width="@dimen/camera_view_size"
+                android:layout_height="@dimen/camera_view_size"
                 android:layout_gravity="center|top" />
 
             <LinearLayout
