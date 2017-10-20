@@ -1,4 +1,4 @@
-package com.gumtree.tensorflowexample
+package com.gumtree.tensorflowexample.activity
 
 import android.app.Activity
 import android.content.Context
@@ -13,6 +13,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.flurgle.camerakit.CameraListener
+import com.gumtree.tensorflowexample.tensorflow.Classifier
+import com.gumtree.tensorflowexample.R
+import com.gumtree.tensorflowexample.preferences.ImagePreference
+import com.gumtree.tensorflowexample.tensorflow.TensorFlowImageClassifier
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -23,13 +27,6 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private val MIN_PRICE = 100
         private val MAX_PRICE = 300
-        private val INPUT_SIZE = 224
-        private val IMAGE_MEAN = 117
-        private val IMAGE_STD = 1f
-        private val INPUT_NAME = "input"
-        private val OUTPUT_NAME = "output"
-        private val MODEL_FILE = "file:///android_asset/tensorflow_inception_graph.pb"
-        private val LABEL_FILE = "file:///android_asset/imagenet_comp_graph_label_strings.txt"
     }
 
     private var classifier: Classifier? = null
@@ -48,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                 this@MainActivity.picture = picture
 
                 var bitmap = BitmapFactory.decodeByteArray(picture, 0, picture.size)
-                bitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, false)
+                bitmap = Bitmap.createScaledBitmap(bitmap, ImagePreference.INPUT_SIZE, ImagePreference.INPUT_SIZE, false)
                 image_view_result!!.setImageBitmap(bitmap)
                 val results = classifier!!.recognizeImage(bitmap)
                 displayImageRecognitionResult(results)
@@ -81,13 +78,13 @@ class MainActivity : AppCompatActivity() {
             try {
                 classifier = TensorFlowImageClassifier.create(
                         assets,
-                        MODEL_FILE,
-                        LABEL_FILE,
-                        INPUT_SIZE,
-                        IMAGE_MEAN,
-                        IMAGE_STD,
-                        INPUT_NAME,
-                        OUTPUT_NAME)
+                        ImagePreference.MODEL_FILE,
+                        ImagePreference.LABEL_FILE,
+                        ImagePreference.INPUT_SIZE,
+                        ImagePreference.IMAGE_MEAN,
+                        ImagePreference.IMAGE_STD,
+                        ImagePreference.INPUT_NAME,
+                        ImagePreference.OUTPUT_NAME)
                 makeButtonVisible()
             } catch (e: Exception) {
                 throw RuntimeException("Error initializing TensorFlow!", e)
